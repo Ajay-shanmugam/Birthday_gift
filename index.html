@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Birthday Abii 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-deep: #1a0a2e;
+    --purple-mid: #2d1057;
+    --purple-bright: #7b2ff7;
+    --purple-light: #b06eff;
+    --purple-glow: #d4a8ff;
+    --pink: #ff6b9d;
+    --gold: #ffd700;
+    --white: #fff;
+    --glass: rgba(255,255,255,0.07);
+    --glass-border: rgba(255,255,255,0.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--purple-deep);
+    color: var(--white);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* STARS BACKGROUND */
+  .stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(123,47,247,0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(255,107,157,0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, rgba(176,110,255,0.2) 0%, transparent 50%),
+      #0d0618;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { 0%{opacity:0.1;transform:scale(0.8)} 100%{opacity:1;transform:scale(1.2)} }
+
+  /* SCREENS */
+  .screen {
+    position: fixed; inset: 0; z-index: 10;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .screen.hidden { opacity:0; pointer-events:none; transform: translateY(30px); }
+  .screen.slide-out { opacity:0; transform: translateY(-60px); }
+
+  /* ============ UNLOCK SCREEN ============ */
+  #unlock {
+    background: linear-gradient(160deg, #0d0618 0%, #1a0a2e 50%, #0d0618 100%);
+  }
+  .lock-time {
+    font-size: 72px; font-weight: 300; letter-spacing: -2px;
+    font-family: 'DM Sans', sans-serif;
+    text-shadow: 0 0 40px rgba(176,110,255,0.5);
+    margin-bottom: 4px;
+  }
+  .lock-date {
+    font-size: 16px; color: var(--purple-glow); letter-spacing: 2px;
+    margin-bottom: 48px; text-transform: uppercase;
+  }
+  .lock-avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-bright), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; margin: 0 auto 16px;
+    box-shadow: 0 0 30px rgba(123,47,247,0.6);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%,100%{box-shadow:0 0 30px rgba(123,47,247,0.6)}
+    50%{box-shadow:0 0 60px rgba(255,107,157,0.8)}
+  }
+  .lock-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; text-align: center; margin-bottom: 6px;
+    background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .lock-subtitle { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 48px; }
+
+  .unlock-question {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 24px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+  }
+  .unlock-question p { font-size: 14px; color: var(--purple-glow); margin-bottom: 16px; letter-spacing: 0.5px; }
+  .unlock-question strong { font-size: 17px; display: block; margin-bottom: 20px; color: white; }
+
+  .options-grid {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .option-btn {
+    background: linear-gradient(135deg, rgba(123,47,247,0.2), rgba(255,107,157,0.1));
+    border: 1px solid rgba(176,110,255,0.3);
+    border-radius: 14px;
+    padding: 14px 20px;
+    color: white; font-size: 15px;
+    cursor: pointer; transition: all 0.3s ease;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  .option-btn:active { transform: scale(0.96); }
+  .option-btn.wrong {
+    border-color: #ff4444; background: rgba(255,68,68,0.15);
+    animation: shake 0.4s ease;
+  }
+  .option-btn.correct {
+    border-color: var(--gold); background: rgba(255,215,0,0.15);
+    animation: correct-pulse 0.5s ease;
+  }
+  @keyframes shake {
+    0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)}
+  }
+  @keyframes correct-pulse {
+    0%{transform:scale(1)} 50%{transform:scale(1.05)} 100%{transform:scale(1)}
+  }
+
+  /* SWIPE HINT */
+  .swipe-hint {
+    position: absolute; bottom: 40px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: float-up 2s ease-in-out infinite;
+    color: rgba(255,255,255,0.4); font-size: 13px;
+  }
+  @keyframes float-up {
+    0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}
+  }
+  .swipe-arrow { font-size: 22px; }
+
+  /* ============ MAIN APP ============ */
+  #app {
+    overflow: hidden;
+    background: #0d0618;
+  }
+
+  .sections-wrapper {
+    position: absolute; inset: 0;
+    transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .section {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 0 20px 80px;
+    overflow-y: auto;
+    transition: opacity 0.5s ease;
+  }
+
+  /* NAV DOTS */
+  .nav-dots {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 100;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.25); cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .dot.active { width: 24px; border-radius: 4px; background: var(--purple-light); }
+
+  .nav-arrows {
+    position: fixed; bottom: 16px; z-index: 100;
+    display: flex; gap: 8px;
+  }
+  .nav-arrow {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    color: white; font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px); transition: all 0.3s;
+  }
+  .nav-arrow:active { transform: scale(0.9); }
+
+  /* SECTION HEADERS */
+  .section-tag {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--purple-light); margin-top: 60px; margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; text-align: center; line-height: 1.2;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #fff 0%, var(--purple-glow) 100%);
+    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .section-sub { font-size: 13px; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 32px; }
+
+  /* ============ HER WORLD CARDS ============ */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 380px;
+  }
+  .world-card {
+    background: linear-gradient(135deg, var(--glass), rgba(123,47,247,0.1));
+    border: 1px solid var(--glass-border);
+    border-radius: 20px; padding: 20px 16px;
+    cursor: pointer; transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    position: relative; overflow: hidden;
+  }
+  .world-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(123,47,247,0.3), rgba(255,107,157,0.2));
+    opacity: 0; transition: opacity 0.3s;
+    border-radius: 20px;
+  }
+  .world-card.tapped::before { opacity: 1; }
+  .world-card.wide { grid-column: 1 / -1; }
+  .card-emoji { font-size: 32px; margin-bottom: 8px; display: block; }
+  .card-label { font-size: 12px; color: var(--purple-glow); letter-spacing: 1px; text-transform: uppercase; }
+  .card-value { font-size: 15px; font-weight: 500; margin-top: 4px; }
+  .card-detail {
+    font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 8px;
+    display: none; line-height: 1.5;
+  }
+  .world-card.tapped .card-detail { display: block; }
+  .world-card.tapped .card-value { color: var(--purple-glow); }
+
+  /* ============ MEMORY TIMELINE ============ */
+  .timeline { width: 100%; max-width: 380px; position: relative; }
+  .timeline-line {
+    position: absolute; left: 22px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--purple-bright), var(--pink), var(--purple-light));
+  }
+  .memory-item {
+    display: flex; gap: 16px; margin-bottom: 20px;
+    opacity: 0; transform: translateX(20px);
+    transition: all 0.5s ease;
+    cursor: pointer;
+  }
+  .memory-item.visible { opacity: 1; transform: translateX(0); }
+  .memory-dot {
+    width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--purple-bright), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; z-index: 1;
+    box-shadow: 0 0 20px rgba(123,47,247,0.5);
+  }
+  .memory-card {
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 16px; padding: 16px; flex: 1;
+    backdrop-filter: blur(10px); transition: all 0.3s;
+  }
+  .memory-item.expanded .memory-card {
+    background: linear-gradient(135deg, rgba(123,47,247,0.2), rgba(255,107,157,0.1));
+    border-color: rgba(176,110,255,0.4);
+  }
+  .memory-date { font-size: 11px; color: var(--purple-light); letter-spacing: 1px; margin-bottom: 4px; }
+  .memory-title { font-size: 15px; font-weight: 500; }
+  .memory-story {
+    font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6;
+    margin-top: 10px; display: none;
+  }
+  .memory-item.expanded .memory-story { display: block; }
+  .tap-hint { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 6px; }
+  .memory-item.expanded .tap-hint { display: none; }
+
+  /* ============ MINI INTERACTION ============ */
+  #interaction-section { gap: 0; }
+  .game-tabs {
+    display: flex; gap: 8px; margin-bottom: 24px; margin-top: 32px;
+  }
+  .game-tab {
+    flex: 1; padding: 10px; border-radius: 12px; text-align: center;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    cursor: pointer; font-size: 13px; transition: all 0.3s;
+    color: rgba(255,255,255,0.6);
+  }
+  .game-tab.active {
+    background: linear-gradient(135deg, var(--purple-bright), var(--pink));
+    border-color: transparent; color: white; font-weight: 500;
+  }
+
+  /* QUIZ */
+  #quiz-game, #hearts-game { width: 100%; max-width: 380px; }
+  .quiz-card {
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 24px; padding: 28px 24px;
+    backdrop-filter: blur(10px); text-align: center;
+    animation: fade-in 0.5s ease;
+  }
+  @keyframes fade-in { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  .quiz-counter { font-size: 12px; color: var(--purple-glow); margin-bottom: 16px; letter-spacing: 2px; }
+  .quiz-question { font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.4; margin-bottom: 24px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt {
+    background: rgba(123,47,247,0.15); border: 1px solid rgba(176,110,255,0.25);
+    border-radius: 14px; padding: 14px; cursor: pointer;
+    font-size: 14px; color: white; transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .quiz-opt.correct-ans { background: rgba(100,220,100,0.2); border-color: #64dc64; }
+  .quiz-opt.wrong-ans { background: rgba(255,80,80,0.2); border-color: #ff5050; }
+  .quiz-result { margin-top: 20px; font-size: 28px; animation: pop 0.4s ease; }
+  @keyframes pop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
+  .quiz-score {
+    text-align: center; padding: 32px; font-family: 'Playfair Display', serif;
+    font-size: 24px; line-height: 1.5;
+  }
+  .score-heart { font-size: 64px; display: block; animation: pulse-glow 1.5s infinite; margin-bottom: 16px; }
+
+  /* HEARTS GAME */
+  #hearts-game { text-align: center; }
+  .hearts-area {
+    position: relative; height: 280px; background: var(--glass);
+    border: 1px solid var(--glass-border); border-radius: 24px;
+    overflow: hidden; cursor: pointer; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+  .hearts-tap-text { font-size: 15px; color: rgba(255,255,255,0.5); pointer-events: none; }
+  .tap-counter {
+    font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700;
+    background: linear-gradient(135deg, var(--purple-light), var(--pink));
+    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .tap-label { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+  .tap-progress-bar {
+    width: 100%; height: 6px; background: rgba(255,255,255,0.1);
+    border-radius: 3px; overflow: hidden; margin-bottom: 24px;
+  }
+  .tap-progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--purple-bright), var(--pink));
+    border-radius: 3px; transition: width 0.2s ease;
+  }
+  .floating-heart {
+    position: absolute; pointer-events: none;
+    animation: float-heart 1.2s ease-out forwards;
+    font-size: 24px; z-index: 10;
+  }
+  @keyframes float-heart {
+    0%{opacity:1;transform:translateY(0) scale(1)}
+    100%{opacity:0;transform:translateY(-120px) scale(0.5)}
+  }
+  .secret-msg {
+    background: linear-gradient(135deg, rgba(123,47,247,0.3), rgba(255,107,157,0.2));
+    border: 1px solid rgba(176,110,255,0.4);
+    border-radius: 20px; padding: 24px; text-align: center;
+    animation: fade-in 0.8s ease;
+  }
+  .secret-msg-text {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 18px; line-height: 1.6; color: var(--purple-glow);
+  }
+
+  /* ============ SECRET ENDING ============ */
+  #ending-section {
+    justify-content: center;
+    background: #000;
+  }
+  .ending-content {
+    text-align: center; max-width: 340px; z-index: 10;
+    margin-top: 40px;
+  }
+  .typing-text {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 20px; line-height: 1.8;
+    color: rgba(255,255,255,0.9); min-height: 200px;
+  }
+  .cursor {
+    display: inline-block; width: 2px; height: 1.2em;
+    background: var(--purple-light); margin-left: 2px;
+    animation: blink 0.8s step-end infinite; vertical-align: text-bottom;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .final-message {
+    display: none;
+    animation: fade-in 1.5s ease;
+    text-align: center;
+  }
+  .final-name {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 64px; color: var(--purple-glow);
+    margin-bottom: 16px;
+    animation: pulse-glow 2s infinite;
+  }
+  .final-birthday {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--gold), var(--pink));
+    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .final-sub { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 24px; }
+
+  /* CONFETTI */
+  .confetti-piece {
+    position: fixed; width: 10px; height: 10px;
+    pointer-events: none; z-index: 1000;
+    animation: confetti-fall var(--dur, 3s) var(--delay, 0s) ease-out forwards;
+  }
+  @keyframes confetti-fall {
+    0%{transform:translateY(-20px) rotate(0deg);opacity:1}
+    100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+  }
+
+  /* SCROLLBAR */
+  .section::-webkit-scrollbar { width: 0; }
+
+  /* GLASSMORPHISM PILL */
+  .pill {
+    display: inline-block; padding: 6px 14px;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 100px; font-size: 12px; color: var(--purple-glow);
+    backdrop-filter: blur(10px);
+  }
+
+  .glow-divider {
+    width: 60px; height: 2px; margin: 0 auto 24px;
+    background: linear-gradient(90deg, transparent, var(--purple-bright), var(--pink), transparent);
+    border-radius: 2px;
+  }
+
+  .section-emoji { font-size: 40px; margin-top: 56px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="stars" id="starsContainer"></div>
+
+<!-- ============ UNLOCK SCREEN ============ -->
+<div class="screen" id="unlock">
+  <div class="lock-time" id="lockTime">--:--</div>
+  <div class="lock-date" id="lockDate">Loading...</div>
+
+  <div class="lock-avatar">🌸</div>
+  <div class="lock-name">Abirami 💜</div>
+  <div class="lock-subtitle">Something special is waiting for you...</div>
+
+  <div class="unlock-question">
+    <p>🔐 Unlock to enter your universe</p>
+    <strong>Our first date was at...? 🗺️</strong>
+    <div class="options-grid">
+      <button class="option-btn" onclick="checkAnswer(this, false)">🌊 Marina Beach</button>
+      <button class="option-btn" onclick="checkAnswer(this, true)">🌳 Kathipara</button>
+      <button class="option-btn" onclick="checkAnswer(this, false)">🎡 Guindy Children's Park</button>
+    </div>
+  </div>
+
+  <div class="swipe-hint">
+    <div class="swipe-arrow">↑</div>
+    <span>Choose to unlock</span>
+  </div>
+</div>
+
+<!-- ============ MAIN APP ============ -->
+<div class="screen hidden" id="app">
+
+  <!-- NAV -->
+  <div class="nav-dots" id="navDots">
+    <div class="dot active" onclick="goTo(0)"></div>
+    <div class="dot" onclick="goTo(1)"></div>
+    <div class="dot" onclick="goTo(2)"></div>
+    <div class="dot" onclick="goTo(3)"></div>
+  </div>
+
+  <!-- SECTION 0: HER WORLD -->
+  <div class="section" id="sec0" style="display:flex;">
+    <div class="section-emoji">🌸</div>
+    <div class="section-tag">Made only for you</div>
+    <div class="section-title">Abii's Universe</div>
+    <div class="section-sub">Tap each card to reveal 💜</div>
+    <div class="glow-divider"></div>
+
+    <div class="cards-grid">
+      <div class="world-card" onclick="tapCard(this)">
+        <span class="card-emoji">🎵</span>
+        <div class="card-label">Her Song</div>
+        <div class="card-value">Venmagam Pennaga</div>
+        <div class="card-detail">The song that defines her soul. Every note feels like it was written for her 💜</div>
+      </div>
+      <div class="world-card" onclick="tapCard(this)">
+        <span class="card-emoji">🍛</span>
+        <div class="card-label">Her Love</div>
+        <div class="card-value">Fish Gravy & Biryani</div>
+        <div class="card-detail">Even fed biryani by hand at Children's Park... how special is that! 🥺</div>
+      </div>
+      <div class="world-card" onclick="tapCard(this)">
+        <span class="card-emoji">🎧</span>
+        <div class="card-label">Her Vibe</div>
+        <div class="card-value">Music is her world</div>
+        <div class="card-detail">She lives in melodies. Music isn't just her hobby — it's who she is 🎶</div>
+      </div>
+      <div class="world-card" onclick="tapCard(this)">
+        <span class="card-emoji">🎂</span>
+        <div class="card-label">Her Dream</div>
+        <div class="card-value">Cake Baking (soon!)</div>
+        <div class="card-detail">Not started yet, but when she does — those cakes will be magical, just like her ✨</div>
+      </div>
+      <div class="world-card wide" onclick="tapCard(this)">
+        <span class="card-emoji">😤</span>
+        <div class="card-label">Secret Side</div>
+        <div class="card-value">The Angry Bird 🐦</div>
+        <div class="card-detail">Nobody in this world knows she has this fiery side — only me. And I love every bit of it. Her anger is only for me... which means I'm the most special person to her 💜</div>
+      </div>
+      <div class="world-card wide" onclick="tapCard(this)">
+        <span class="card-emoji">👨‍👩‍👦</span>
+        <div class="card-label">Her Heart</div>
+        <div class="card-value">Family is everything</div>
+        <div class="card-detail">Her Appa, Thatha, Amma, Amachi, Anna — she carries them all in her heart. The ones gone live forever in her love. That's what makes her so deep 🌸</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; margin-bottom:60px;">
+      <span class="pill">Swipe up or tap → to continue 💜</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1: MEMORIES -->
+  <div class="section" id="sec1" style="display:none;">
+    <div class="section-emoji">💫</div>
+    <div class="section-tag">Our Story</div>
+    <div class="section-title">Every Moment With You</div>
+    <div class="section-sub">Tap a memory to relive it 🥺</div>
+    <div class="glow-divider"></div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-line"></div>
+
+      <!-- 1. VERY FIRST MEET ON BUS -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">🌟</div>
+        <div class="memory-card">
+          <div class="memory-date">THE VERY BEGINNING 🦢✨(👀YOUR EYES)</div>
+          <div class="memory-title">The Day I First Saw You 👀💜</div>
+          <div class="memory-story">It started on a SVS. Just a normal day — until you walked in and sat there. I still remember that moment. I didn't know it then, but that was the day my life quietly changed forever. You didn't even know I existed yet... but I already noticed you 🌸</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 2. FIRST TOUCH -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">🤝</div>
+        <div class="memory-card">
+          <div class="memory-date">FIRST BUS TRAVEL — CHAPTER 1</div>
+          <div class="memory-title">The First Touch 🫶</div>
+          <div class="memory-story">The moment I touched your hand for the very first time... I don't think I breathed properly for a whole minute. My heart was beating so loud, I thought you'd hear it. That one touch changed everything for me 💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 3. SHOULDER -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">🫂</div>
+        <div class="memory-card">
+          <div class="memory-date">FIRST BUS TRAVEL — CHAPTER 2</div>
+          <div class="memory-title">You Rested on My Shoulder 🌸</div>
+          <div class="memory-story">When you laid your head on my shoulder... the whole world went quiet. Just you, just me, and that bus that I wished would never reach its stop. I never wanted that ride to end 🥺💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 4. CHEST -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">💗</div>
+        <div class="memory-card">
+          <div class="memory-date">FIRST BUS TRAVEL — CHAPTER 3</div>
+          <div class="memory-title">You Laid on My Chest 👑</div>
+          <div class="memory-story">This was the moment I felt like the main character of my own life. You, resting on my chest. So close. So real. My heartbeat was probably telling you everything I was too nervous to say out loud 💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 5. 29 AUG — HELD FACE -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">🙌</div>
+        <div class="memory-card">
+          <div class="memory-date">29 AUGUST 2025</div>
+          <div class="memory-title">I Held Your Face 🥺</div>
+          <div class="memory-story">August 29, 2025 — I held your face gently in my hands for the very first time. How soft. How warm. How perfectly you. That date is tattooed on my heart and I will never forget how that moment felt ✨💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 6. 10 NOV — LOVE U -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">💌</div>
+        <div class="memory-card">
+          <div class="memory-date">10 NOVEMBER 2025 — 2:19 AM 🌙</div>
+          <div class="memory-title">You Said "Love U" 😭</div>
+          <div class="memory-story">2:19 AM. Two words — "Love u." And I cried. Happy tears. The kind you cry when something too beautiful, too real, finally happens. You chose me, Abii. Out of everyone. You chose me. I'll carry that moment in my heart forever 💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 9. KATHIPARA — 1ST DATE -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">🌳</div>
+        <div class="memory-card">
+          <div class="memory-date">OUR 1ST DATE — KATHIPARA(Ajay.... hostel pore😪...)</div>
+          <div class="memory-title">Kathipara With You 💜</div>
+          <div class="memory-story">Our very first date(11.11.2025). Kathipara. I was nervous, excited, and just happy to be beside you. Everything felt different with you next to me — even the ordinary became unforgettable 🌸💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 7. 11 NOV — FIRST HUG -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">🫶</div>
+        <div class="memory-card">
+          <div class="memory-date">11 NOVEMBER 2025</div>
+          <div class="memory-title">Our First Hug 🌸</div>
+          <div class="memory-story">The very next day after you said "Love u" — you hugged me. That hug felt like coming home. Like the universe finally exhaled and said — yes. This is exactly right. This is where you belong 💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      <!-- 8. 20 NOV — FIRST KISS -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">💋</div>
+        <div class="memory-card">
+          <div class="memory-date">29 NOVEMBER 2025</div>
+          <div class="memory-title">Our First Kiss 🌹</div>
+          <div class="memory-story">Our second bus travel together. And this time — our first kiss. Some moments live beyond words and this is one of them. That one kiss became uncountable ones since then... and I still want more 😍💜</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+      
+
+      <!-- 10. CHILDREN'S PARK — 2ND DATE -->
+      <div class="memory-item" onclick="expandMemory(this)">
+        <div class="memory-dot">🍛</div>
+        <div class="memory-card">
+          <div class="memory-date">OUR 2ND DATE — GUINDY CHILDREN'S PARK</div>
+          <div class="memory-title">I Fed You Biryani 🥺</div>
+          <div class="memory-story">Guindy Children's Park. I fed you biryani with my own hand and you let me. No grand gesture could ever beat that moment. Just us, just biryani, and so much love in one simple act 💜✨</div>
+          <div class="tap-hint">Tap to read 💜</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-bottom:60px;">
+      <span class="pill">Every moment with you is a treasure 💜</span>
+    </div>
+  </div>
+
+  <!-- SECTION 2: INTERACTION -->
+  <div class="section" id="sec2" style="display:none;" id="interaction-section">
+    <div class="section-emoji">🎮</div>
+    <div class="section-tag">Just for us</div>
+    <div class="section-title">Our Little Game</div>
+    <div class="section-sub">Let's play, Abii 💜</div>
+    <div class="glow-divider"></div>
+
+    <div class="game-tabs" style="width:100%;max-width:380px;">
+      <div class="game-tab active" onclick="switchGame('quiz')">💬 Love Quiz</div>
+      <div class="game-tab" onclick="switchGame('hearts')">💜 Tap Hearts</div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quiz-game" style="width:100%;max-width:380px;">
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-counter" id="quizCounter">QUESTION 1 OF 5 💜</div>
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-result" id="quizResult"></div>
+      </div>
+    </div>
+
+    <!-- HEARTS -->
+    <div id="hearts-game" style="display:none;width:100%;max-width:380px;">
+      <div class="tap-counter" id="tapCount">0</div>
+      <div class="tap-label">taps of love 💜</div>
+      <div class="tap-progress-bar"><div class="tap-progress-fill" id="tapFill" style="width:0%"></div></div>
+      <div class="hearts-area" id="heartsArea" onclick="tapHeart(event)">
+        <div class="hearts-tap-text" id="heartsTapText">Tap here, Abii... 💜<br><span style="font-size:12px;color:rgba(255,255,255,0.3)">15 taps to unlock something special</span></div>
+      </div>
+      <div id="heartSecretMsg" style="display:none;" class="secret-msg">
+        <div class="secret-msg-text">"Every heartbeat of mine beats your name, Abii... 💜 Our kiss count may be uncountable — but my love for you? Infinite. You are my favourite person in this entire universe 🌌"</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:60px;margin-top:16px;">
+      <span class="pill">One more section... the best one 💜</span>
+    </div>
+  </div>
+
+  <!-- SECTION 3: ENDING -->
+  <div class="section" id="sec3" style="display:none;justify-content:center;background:#000;">
+    <div class="ending-content">
+      <div class="typing-text" id="typingText"><span class="cursor"></span></div>
+      <div class="final-message" id="finalMessage">
+        <div class="final-name">Abii 💜</div>
+        <div class="final-birthday">🎂 Happy Birthday, My Girl! 🎂</div>
+        <div class="final-sub">
+          Abii, you are so much more precious to me than you ever think you are 🌸<br><br>
+          In this whole world, you were the first person who truly chose me — not because you had to, but because you wanted to. Do you know how much that means to me? It changed everything 💜<br><br>
+          I love you in ways I don't even have words for. I try to show it, but it's always less than what I feel inside. Without you, honestly, I am nothing. Please stay in my life, Abii — not just today, but always. I need you here 🥺<br><br>
+          I'm so proud of you, my thango 👑 I mean it from the bottom of my heart. I care for you the way you care for the people most precious to you — completely, without condition. You are my first priority. Always. No matter what.<br><br>
+          And if I ever hurt you or make a mistake — please, please don't walk away 💔 Scold me, be angry with me, even slap me if you have to — but don't leave. Because a world without you in it is not a world I want to be in.<br><br>
+          <strong style="color:var(--purple-glow)">Happy Birthday, my girl 🎂💜 I love you, Abii ✨🎉🎊</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============ STARS ============
+const starsContainer = document.getElementById('starsContainer');
+for(let i=0;i<80;i++){
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random()*3+1;
+  star.style.cssText = `
+    width:${size}px;height:${size}px;
+    left:${Math.random()*100}%;top:${Math.random()*100}%;
+    --d:${2+Math.random()*4}s;
+    animation-delay:${Math.random()*4}s;
+    opacity:${Math.random()*0.8+0.1};
+  `;
+  starsContainer.appendChild(star);
+}
+
+// ============ CLOCK ============
+function updateClock(){
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('lockTime').textContent = `${h}:${m}`;
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('lockDate').textContent =
+    `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+}
+updateClock(); setInterval(updateClock,10000);
+
+// ============ UNLOCK ============
+function checkAnswer(btn, correct){
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b=>b.disabled=true);
+  if(correct){
+    btn.classList.add('correct');
+    btn.textContent = '✅ Kathipara — Yes! That\'s our place! 💜';
+    setTimeout(()=>{
+      document.getElementById('unlock').classList.add('slide-out');
+      setTimeout(()=>{
+        document.getElementById('unlock').classList.add('hidden');
+        document.getElementById('app').classList.remove('hidden');
+        initTimeline();
+      },800);
+    },1200);
+  } else {
+    btn.classList.add('wrong');
+    setTimeout(()=>{
+      btn.classList.remove('wrong');
+      btn.disabled=false;
+      btns.forEach(b=>b.disabled=false);
+    },800);
+  }
+}
+
+// ============ SECTIONS NAV ============
+let currentSection = 0;
+const totalSections = 4;
+const sections = ['sec0','sec1','sec2','sec3'];
+
+function goTo(idx){
+  if(idx < 0 || idx >= totalSections) return;
+  document.getElementById(sections[currentSection]).style.display='none';
+  currentSection = idx;
+  document.getElementById(sections[currentSection]).style.display='flex';
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.toggle('active', i===currentSection);
+  });
+  if(currentSection === 1) initTimeline();
+  if(currentSection === 3) startEnding();
+}
+
+// Touch/swipe for sections
+let touchStartX=0, touchStartY=0;
+document.getElementById('app').addEventListener('touchstart',e=>{
+  touchStartX=e.touches[0].clientX;
+  touchStartY=e.touches[0].clientY;
+},{passive:true});
+document.getElementById('app').addEventListener('touchend',e=>{
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50){
+    if(dx < 0) goTo(currentSection+1);
+    else goTo(currentSection-1);
+  }
+},{passive:true});
+
+// ============ HER WORLD ============
+function tapCard(card){
+  card.classList.toggle('tapped');
+}
+
+// ============ TIMELINE ============
+let timelineInited = false;
+function initTimeline(){
+  if(timelineInited) return;
+  timelineInited = true;
+  const items = document.querySelectorAll('.memory-item');
+  items.forEach((item,i)=>{
+    setTimeout(()=>item.classList.add('visible'), i*150);
+  });
+}
+function expandMemory(item){
+  item.classList.toggle('expanded');
+}
+
+// ============ GAME TABS ============
+function switchGame(game){
+  document.querySelectorAll('.game-tab').forEach((t,i)=>{
+    t.classList.toggle('active', (i===0&&game==='quiz')||(i===1&&game==='hearts'));
+  });
+  document.getElementById('quiz-game').style.display = game==='quiz'?'block':'none';
+  document.getElementById('hearts-game').style.display = game==='hearts'?'block':'none';
+}
+
+// ============ QUIZ ============
+const quizData = [
+  {
+    q: "👑 Who is the boss in this relationship?",
+    opts: ["Him 😅","Her, always 👸","It's equal... (wrong answer) 😂","Definitely HER 💜"],
+    correct: 3,
+    result: "✅ Obviously YOU, Abii! You always win! 😂💜"
+  },
+  {
+    q: "💜 When did our love become official?",
+    opts: ["After our first date","10 November 2025 at 2:19 AM 🌙","After our first kiss","It was always official"],
+    correct: 1,
+    result: "✅ 10th Nov, 2:19 AM — I cried that night 😭💜"
+  },
+  {
+    q: "🙏 Who said sorry first?",
+    opts: ["She did 😤","He did... always 😅","Both at same time","Neither ever did"],
+    correct: 1,
+    result: "✅ Always me! Because keeping you matters more than ego 💜"
+  },
+  {
+    q: "💎 Who is the most beautiful girl in the world... for his eyes?",
+    opts: ["Some actress 😅","A stranger","YOU, Abirami 💜","No one specific"],
+    correct: 2,
+    result: "✅ YOU, always YOU Abii! No question, no competition 💜👸"
+  },
+  {
+    q: "😏 Our next meet... can I get a kiss?",
+    opts: ["Yes 💜","Of course yes 😍","Definitely yes 🥰","All of the above — YES! 😘"],
+    correct: 3,
+    result: "✅ Yayyy!! Waiting for it already 😍💜"
+  }
+];
+let currentQ = 0;
+let quizDone = false;
+
+function loadQuiz(){
+  if(currentQ >= quizData.length){ showScore(); return; }
+  const q = quizData[currentQ];
+  document.getElementById('quizCounter').textContent = `QUESTION ${currentQ+1} OF ${quizData.length} 💜`;
+  document.getElementById('quizQuestion').textContent = q.q;
+  document.getElementById('quizResult').textContent = '';
+  const optsEl = document.getElementById('quizOptions');
+  optsEl.innerHTML = '';
+  q.opts.forEach((opt,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = ()=>answerQuiz(i, q.correct, q.result);
+    optsEl.appendChild(btn);
+  });
+}
+loadQuiz();
+
+function answerQuiz(chosen, correct, result){
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach(o=>o.onclick=null);
+  opts[chosen].classList.add(chosen===correct?'correct-ans':'wrong-ans');
+  opts[correct].classList.add('correct-ans');
+  document.getElementById('quizResult').textContent = result;
+  setTimeout(()=>{
+    currentQ++;
+    loadQuiz();
+  }, 1800);
+}
+
+function showScore(){
+  document.getElementById('quizCard').innerHTML = `
+    <div class="quiz-score">
+      <span class="score-heart">💜</span>
+      Abii, you know us perfectly!<br>
+      <span style="font-size:16px;color:rgba(255,255,255,0.5)">Every answer is written in our hearts 🥺</span>
+    </div>
+  `;
+}
+
+// ============ HEARTS GAME ============
+let tapCount = 0;
+function tapHeart(e){
+  if(tapCount >= 15) return;
+  tapCount++;
+  document.getElementById('tapCount').textContent = tapCount;
+  document.getElementById('tapFill').style.width = (tapCount/15*100)+'%';
+  if(tapCount >= 15){
+    document.getElementById('heartsTapText').style.display='none';
+    document.getElementById('heartSecretMsg').style.display='block';
+  }
+  // Floating heart
+  const heart = document.createElement('div');
+  heart.className = 'floating-heart';
+  const emojis = ['💜','💗','💖','💝','✨','🌸'];
+  heart.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+  const rect = e.currentTarget.getBoundingClientRect();
+  heart.style.left = (e.clientX - rect.left - 12)+'px';
+  heart.style.top = (e.clientY - rect.top - 12)+'px';
+  e.currentTarget.appendChild(heart);
+  setTimeout(()=>heart.remove(), 1200);
+}
+
+// ============ ENDING / TYPING ============
+const endingLines = [
+  "Everyone sees a girl...",
+  "But I see Abirami.",
+  "I see the one who gets angry only with me...",
+  "The one who carries her Appa and Thatha in her heart...",
+  "The one who laid on my chest on a bus...",
+  "And made me feel like the main character...",
+  "The one who said 'I love you' at 2:19 AM...",
+  "And made me cry the happiest tears of my life...",
+  "The one the whole world sees as sweet...",
+  "But only I know — she's also my little angry bird 😤",
+  "You chose me, Abii.",
+  "And I will never take that for granted.",
+  "Never.",
+];
+
+let endingStarted = false;
+function startEnding(){
+  if(endingStarted) return;
+  endingStarted = true;
+  typeLines(0, '');
+}
+
+function typeLines(lineIdx, currentText){
+  if(lineIdx >= endingLines.length){
+    setTimeout(showFinalMessage, 800);
+    return;
+  }
+  const line = endingLines[lineIdx];
+  const prefix = currentText;
+  let charIdx = 0;
+  function typeChar(){
+    if(charIdx <= line.length){
+      document.getElementById('typingText').innerHTML =
+        prefix + line.substring(0,charIdx) + '<span class="cursor"></span>';
+      charIdx++;
+      setTimeout(typeChar, 45);
+    } else {
+      const newText = prefix + line + '<br>';
+      setTimeout(()=>typeLines(lineIdx+1, newText), 500);
+    }
+  }
+  typeChar();
+}
+
+function showFinalMessage(){
+  document.getElementById('typingText').style.display='none';
+  document.getElementById('finalMessage').style.display='block';
+  launchConfetti();
+}
+
+function launchConfetti(){
+  const colors = ['#7b2ff7','#ff6b9d','#d4a8ff','#ffd700','#b06eff','#ff9de2'];
+  for(let i=0;i<80;i++){
+    setTimeout(()=>{
+      const c = document.createElement('div');
+      c.className = 'confetti-piece';
+      const color = colors[Math.floor(Math.random()*colors.length)];
+      c.style.cssText = `
+        left:${Math.random()*100}%;
+        background:${color};
+        border-radius:${Math.random()>0.5?'50%':'2px'};
+        width:${6+Math.random()*8}px;
+        height:${6+Math.random()*8}px;
+        --dur:${2+Math.random()*2}s;
+        --delay:0s;
+      `;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 4000);
+    }, i*60);
+  }
+  // Repeat confetti
+  setTimeout(launchConfetti, 5000);
+}
+</script>
+</body>
+</html>
